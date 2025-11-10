@@ -10,17 +10,19 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     
+    <!-- 📌 PROPIEDADES - Aquí va exec.mainClass -->
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
+        <exec.mainClass>com.mycompany.proyectointegrador.vista.FrmLogin</exec.mainClass>
     </properties>
     
     <dependencies>
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <version>42.7.3</version> <!-- Versión estable al 2025; verifica la más reciente en https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+            <version>42.7.3</version>
         </dependency>
     </dependencies>
     
@@ -43,8 +45,7 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>3.1.0</version>
                 <configuration>
-                    <!-- Clase principal del proyecto -->
-                    <mainClass>com.mycompany.proyectointegrador.vista.FrmPaginaPrincipal</mainClass>
+                    <mainClass>${exec.mainClass}</mainClass>
                 </configuration>
             </plugin>
         </plugins>

@@ -1,31 +1,36 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
 package com.mycompany.proyectointegrador.vista;
 
-/**
- *
- * @author edward
- */
-
-
+import com.mycompany.proyectointegrador.modelo.Usuario;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+/**
+ * Formulario de Reportes
+ * Permite generar reportes según el rol del usuario
+ * @author edward
+ */
 public class FrmReporte extends JFrame {
+    
+    private Usuario usuarioActual;
 
-    public FrmReporte() {
+    // Constructor con Usuario (para sistema con roles)
+    public FrmReporte(Usuario usuario) {
+        this.usuarioActual = usuario;
         configurarVentana();
         crearComponentes();
+    }
+
+    // Constructor sin parámetros (para compatibilidad)
+    public FrmReporte() {
+        this(null);
     }
 
     private void configurarVentana() {
         setTitle("Generación de Reportes Fitosanitarios");
         setSize(800, 500);
         setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Cambiado de EXIT_ON_CLOSE
         setResizable(false);
     }
 
@@ -45,6 +50,14 @@ public class FrmReporte extends JFrame {
         header.add(lblTitulo);
         contentPane.add(header, BorderLayout.NORTH);
 
+        // Mostrar usuario si existe
+        if(usuarioActual != null) {
+            JLabel lblUsuario = new JLabel("Usuario: " + usuarioActual.getNombreUsuario(), JLabel.CENTER);
+            lblUsuario.setForeground(Color.LIGHT_GRAY);
+            lblUsuario.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+            header.add(lblUsuario, BorderLayout.SOUTH);
+        }
+
         // Panel central
         JPanel panel = new JPanel(new GridLayout(3, 1, 15, 15));
         panel.setBorder(BorderFactory.createEmptyBorder(60, 150, 60, 150));
@@ -52,7 +65,7 @@ public class FrmReporte extends JFrame {
 
         JButton btnPredios = new JButton("Reporte de Predios");
         JButton btnInspecciones = new JButton("Reporte de Inspecciones");
-        JButton btnVolver = new JButton("Volver al Menú");
+        JButton btnVolver = new JButton("Volver");
 
         configurarBoton(btnPredios, new Color(41, 128, 185));
         configurarBoton(btnInspecciones, new Color(39, 174, 96));
@@ -66,10 +79,7 @@ public class FrmReporte extends JFrame {
             JOptionPane.showMessageDialog(this, "Generando reporte de inspecciones...")
         );
 
-        btnVolver.addActionListener(e -> {
-            new FrmMenu().setVisible(true);
-            dispose();
-        });
+        btnVolver.addActionListener(e -> dispose()); // Solo cerrar esta ventana
 
         panel.add(btnPredios);
         panel.add(btnInspecciones);
@@ -97,5 +107,8 @@ public class FrmReporte extends JFrame {
             }
         });
     }
-}
 
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> new FrmReporte().setVisible(true));
+    }
+}

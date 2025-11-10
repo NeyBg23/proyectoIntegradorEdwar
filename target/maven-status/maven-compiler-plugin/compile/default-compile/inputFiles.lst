@@ -1,14 +1,18 @@
 C:\Users\NeyBg\OneDrive\Documentos\edwar\ProyectoIntegrador\ProyectoIntegrador\src\main\java\com\mycompany\proyectointegrador\modelo\Predio.java
+C:\Users\NeyBg\OneDrive\Documentos\edwar\ProyectoIntegrador\ProyectoIntegrador\src\main\java\com\mycompany\proyectointegrador\dao\UsuarioDAO.java
 C:\Users\NeyBg\OneDrive\Documentos\edwar\ProyectoIntegrador\ProyectoIntegrador\src\main\java\com\mycompany\proyectointegrador\modelo\Departamento.java
 C:\Users\NeyBg\OneDrive\Documentos\edwar\ProyectoIntegrador\ProyectoIntegrador\src\main\java\com\mycompany\proyectointegrador\util\PruebaConexion.java
 C:\Users\NeyBg\OneDrive\Documentos\edwar\ProyectoIntegrador\ProyectoIntegrador\src\main\java\com\mycompany\proyectointegrador\modelo\Plaga.java
 C:\Users\NeyBg\OneDrive\Documentos\edwar\ProyectoIntegrador\ProyectoIntegrador\src\main\java\com\mycompany\proyectointegrador\vista\FrmSubmenuInspeccion.java
 C:\Users\NeyBg\OneDrive\Documentos\edwar\ProyectoIntegrador\ProyectoIntegrador\src\main\java\com\mycompany\proyectointegrador\dao\PlagaDAO.java
+C:\Users\NeyBg\OneDrive\Documentos\edwar\ProyectoIntegrador\ProyectoIntegrador\src\main\java\com\mycompany\proyectointegrador\vista\FrmMenuAsistente.java
 C:\Users\NeyBg\OneDrive\Documentos\edwar\ProyectoIntegrador\ProyectoIntegrador\src\main\java\com\mycompany\proyectointegrador\modelo\EspecieVegetal.java
 C:\Users\NeyBg\OneDrive\Documentos\edwar\ProyectoIntegrador\ProyectoIntegrador\src\main\java\com\mycompany\proyectointegrador\vista\FrmAsistente.java
 C:\Users\NeyBg\OneDrive\Documentos\edwar\ProyectoIntegrador\ProyectoIntegrador\src\main\java\com\mycompany\proyectointegrador\modelo\InformeInspeccion.java
 C:\Users\NeyBg\OneDrive\Documentos\edwar\ProyectoIntegrador\ProyectoIntegrador\src\main\java\com\mycompany\proyectointegrador\modelo\LugarDeProduccion.java
 C:\Users\NeyBg\OneDrive\Documentos\edwar\ProyectoIntegrador\ProyectoIntegrador\src\main\java\com\mycompany\proyectointegrador\modelo\Vereda.java
+C:\Users\NeyBg\OneDrive\Documentos\edwar\ProyectoIntegrador\ProyectoIntegrador\src\main\java\com\mycompany\proyectointegrador\modelo\Usuario.java
+C:\Users\NeyBg\OneDrive\Documentos\edwar\ProyectoIntegrador\ProyectoIntegrador\src\main\java\com\mycompany\proyectointegrador\vista\FrmMenuPropietario.java
 C:\Users\NeyBg\OneDrive\Documentos\edwar\ProyectoIntegrador\ProyectoIntegrador\src\main\java\com\mycompany\proyectointegrador\vista\FrmMunicipio.java
 C:\Users\NeyBg\OneDrive\Documentos\edwar\ProyectoIntegrador\ProyectoIntegrador\src\main\java\com\mycompany\proyectointegrador\modelo\Propietario.java
 C:\Users\NeyBg\OneDrive\Documentos\edwar\ProyectoIntegrador\ProyectoIntegrador\src\main\java\com\mycompany\proyectointegrador\dao\DepartamentoDAO.java
@@ -29,5 +33,6 @@ C:\Users\NeyBg\OneDrive\Documentos\edwar\ProyectoIntegrador\ProyectoIntegrador\s
 C:\Users\NeyBg\OneDrive\Documentos\edwar\ProyectoIntegrador\ProyectoIntegrador\src\main\java\com\mycompany\proyectointegrador\modelo\InspeccionFitosanitaria.java
 C:\Users\NeyBg\OneDrive\Documentos\edwar\ProyectoIntegrador\ProyectoIntegrador\src\main\java\com\mycompany\proyectointegrador\dao\AsistenteDAO.java
 C:\Users\NeyBg\OneDrive\Documentos\edwar\ProyectoIntegrador\ProyectoIntegrador\src\main\java\com\mycompany\proyectointegrador\modelo\Municipio.java
+C:\Users\NeyBg\OneDrive\Documentos\edwar\ProyectoIntegrador\ProyectoIntegrador\src\main\java\com\mycompany\proyectointegrador\vista\FrmLogin.java
 C:\Users\NeyBg\OneDrive\Documentos\edwar\ProyectoIntegrador\ProyectoIntegrador\src\main\java\com\mycompany\proyectointegrador\vista\FrmPredio.java
 C:\Users\NeyBg\OneDrive\Documentos\edwar\ProyectoIntegrador\ProyectoIntegrador\src\main\java\com\mycompany\proyectointegrador\dao\PredioDAO.java

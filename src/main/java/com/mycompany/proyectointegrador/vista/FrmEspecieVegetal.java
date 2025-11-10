@@ -1,42 +1,26 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
 package com.mycompany.proyectointegrador.vista;
 
-/**
- *
- * @author edward
- */
-
-
-
-
 import com.mycompany.proyectointegrador.modelo.EspecieVegetal;
+import com.mycompany.proyectointegrador.dao.EspecieVegetalDAO;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.io.*;
-import java.util.ArrayList;
+import java.sql.SQLException;
+import java.util.List;
 
-/**
- * Interfaz para registrar especies vegetales.
- * @author edward
- */
 public class FrmEspecieVegetal extends JFrame {
 
     private JTextField txtId, txtCodigo, txtNombre, txtDensidad;
     private JTextArea txtDescripcion;
-    private JButton btnGuardar, btnEditar, btnEliminar, btnVolver, btnLimpiar;
+    private JButton btnGuardar, btnEditar, btnEliminar, btnLimpiar, btnVolver;
     private JTable tablaEspecies;
     private DefaultTableModel modeloTabla;
-    private ArrayList<EspecieVegetal> listaEspecies;
-    private final String ARCHIVO = "especies.txt";
+    private EspecieVegetalDAO especieDAO = new EspecieVegetalDAO();
+    private int especieSeleccionada = -1;
 
     public FrmEspecieVegetal() {
-        listaEspecies = new ArrayList<>();
         initComponents();
-        cargarDesdeArchivo();
+        cargarEspecies();
     }
 
     private void initComponents() {
@@ -46,18 +30,19 @@ public class FrmEspecieVegetal extends JFrame {
         setLocationRelativeTo(null);
         setLayout(new BorderLayout(10, 10));
 
-        // ===== Título =====
+        // Título
         JLabel lblTitulo = new JLabel("Registro de Especie Vegetal", SwingConstants.CENTER);
         lblTitulo.setFont(new Font("Segoe UI", Font.BOLD, 22));
         lblTitulo.setForeground(new Color(41, 128, 185));
         add(lblTitulo, BorderLayout.NORTH);
 
-        // ===== Panel de formulario =====
+        // Formulario (lado izquierdo)
         JPanel panelIzquierdo = new JPanel(new GridLayout(6, 2, 10, 10));
         panelIzquierdo.setBorder(BorderFactory.createEmptyBorder(20, 30, 20, 30));
 
         panelIzquierdo.add(new JLabel("ID:"));
         txtId = new JTextField();
+        txtId.setEditable(false); // BD autogenera
         panelIzquierdo.add(txtId);
 
         panelIzquierdo.add(new JLabel("Código de Registro:"));
@@ -80,27 +65,28 @@ public class FrmEspecieVegetal extends JFrame {
 
         add(panelIzquierdo, BorderLayout.WEST);
 
-        // ===== Tabla =====
-        modeloTabla = new DefaultTableModel(new Object[]{"ID", "Código", "Nombre", "Densidad", "Descripción"}, 0);
+        // Tabla
+        modeloTabla = new DefaultTableModel(new Object[]{"ID", "Código", "Nombre", "Densidad", "Descripción"}, 0) {
+            public boolean isCellEditable(int row, int col) { return false; }
+        };
         tablaEspecies = new JTable(modeloTabla);
         tablaEspecies.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         tablaEspecies.setRowHeight(25);
-        tablaEspecies.setFont(new Font("Segoe UI", Font.PLAIN, 13));
         add(new JScrollPane(tablaEspecies), BorderLayout.CENTER);
 
-        // ===== Panel de botones =====
+        // Panel de botones
         JPanel panelBotones = new JPanel(new FlowLayout(FlowLayout.CENTER, 15, 10));
         btnGuardar = new JButton("Guardar");
         btnEditar = new JButton("Editar");
         btnEliminar = new JButton("Eliminar");
-        btnVolver = new JButton("Volver");
         btnLimpiar = new JButton("Limpiar");
+        btnVolver = new JButton("Volver");
 
         configurarBoton(btnGuardar);
         configurarBoton(btnEditar);
         configurarBoton(btnEliminar);
-        configurarBoton(btnVolver);
         configurarBoton(btnLimpiar);
+        configurarBoton(btnVolver);
 
         panelBotones.add(btnGuardar);
         panelBotones.add(btnEditar);
@@ -110,12 +96,12 @@ public class FrmEspecieVegetal extends JFrame {
 
         add(panelBotones, BorderLayout.SOUTH);
 
-        // ===== Eventos =====
+        // Acciones
         btnGuardar.addActionListener(e -> guardarEspecie());
         btnEditar.addActionListener(e -> editarEspecie());
         btnEliminar.addActionListener(e -> eliminarEspecie());
-        btnVolver.addActionListener(e -> dispose());
         btnLimpiar.addActionListener(e -> limpiarCampos());
+        btnVolver.addActionListener(e -> dispose());
         tablaEspecies.getSelectionModel().addListSelectionListener(e -> cargarSeleccion());
     }
 
@@ -126,33 +112,46 @@ public class FrmEspecieVegetal extends JFrame {
         boton.setFocusPainted(false);
         boton.setCursor(new Cursor(Cursor.HAND_CURSOR));
         boton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                boton.setBackground(new Color(31, 97, 141));
-            }
-
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                boton.setBackground(new Color(41, 128, 185));
-            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) { boton.setBackground(new Color(31, 97, 141)); }
+            public void mouseExited(java.awt.event.MouseEvent evt) { boton.setBackground(new Color(41, 128, 185)); }
         });
     }
 
-    // ===== Funciones CRUD =====
+    // =================== CRUD EN BASE DE DATOS ===================
+
+    private void cargarEspecies() {
+        modeloTabla.setRowCount(0);
+        try {
+            List<EspecieVegetal> lista = especieDAO.listar();
+            for (EspecieVegetal e : lista) {
+                modeloTabla.addRow(new Object[]{
+                    e.getId(), e.getCodigo(), e.getNombre(), e.getDensidad(), e.getDescripcion()
+                });
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Error cargando especies: " + e.getMessage());
+        }
+    }
+
     private void guardarEspecie() {
         try {
-            int id = Integer.parseInt(txtId.getText());
-            String codigo = txtCodigo.getText();
-            String nombre = txtNombre.getText();
-            float densidad = Float.parseFloat(txtDensidad.getText());
-            String descripcion = txtDescripcion.getText();
+            String codigo = txtCodigo.getText().trim();
+            String nombre = txtNombre.getText().trim();
+            float densidad = Float.parseFloat(txtDensidad.getText().trim());
+            String descripcion = txtDescripcion.getText().trim();
 
-            EspecieVegetal especie = new EspecieVegetal(id, codigo, nombre, densidad, descripcion);
-            listaEspecies.add(especie);
-            modeloTabla.addRow(new Object[]{id, codigo, nombre, densidad, descripcion});
-            guardarEnArchivo();
+            if (codigo.isEmpty() || nombre.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Código y nombre son obligatorios.");
+                return;
+            }
+
+            EspecieVegetal especie = new EspecieVegetal(0, codigo, nombre, densidad, descripcion);
+            especieDAO.guardar(especie);
+            cargarEspecies();
             limpiarCampos();
             JOptionPane.showMessageDialog(this, "✅ Especie guardada con éxito.");
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "❌ Verifica los campos numéricos (ID y Densidad).");
+            JOptionPane.showMessageDialog(this, "❌ Verifica los campos numéricos y que no estén vacíos.");
         }
     }
 
@@ -166,20 +165,10 @@ public class FrmEspecieVegetal extends JFrame {
                 float densidad = Float.parseFloat(txtDensidad.getText());
                 String descripcion = txtDescripcion.getText();
 
-                EspecieVegetal especie = listaEspecies.get(fila);
-                especie.setId(id);
-                especie.setCodigo(codigo);
-                especie.setNombre(nombre);
-                especie.setDensidad(densidad);
-                especie.setDescripcion(descripcion);
-
-                modeloTabla.setValueAt(id, fila, 0);
-                modeloTabla.setValueAt(codigo, fila, 1);
-                modeloTabla.setValueAt(nombre, fila, 2);
-                modeloTabla.setValueAt(densidad, fila, 3);
-                modeloTabla.setValueAt(descripcion, fila, 4);
-
-                guardarEnArchivo();
+                EspecieVegetal especie = new EspecieVegetal(id, codigo, nombre, densidad, descripcion);
+                especieDAO.actualizar(especie);
+                cargarEspecies();
+                limpiarCampos();
                 JOptionPane.showMessageDialog(this, "✏️ Registro actualizado correctamente.");
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "❌ Error al editar. Verifica los datos.");
@@ -192,10 +181,15 @@ public class FrmEspecieVegetal extends JFrame {
     private void eliminarEspecie() {
         int fila = tablaEspecies.getSelectedRow();
         if (fila >= 0) {
-            listaEspecies.remove(fila);
-            modeloTabla.removeRow(fila);
-            guardarEnArchivo();
-            JOptionPane.showMessageDialog(this, "🗑️ Registro eliminado correctamente.");
+            try {
+                int id = Integer.parseInt(modeloTabla.getValueAt(fila, 0).toString());
+                especieDAO.eliminar(id);
+                cargarEspecies();
+                limpiarCampos();
+                JOptionPane.showMessageDialog(this, "🗑️ Registro eliminado correctamente.");
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "❌ Error al eliminar especie.");
+            }
         } else {
             JOptionPane.showMessageDialog(this, "Selecciona una fila para eliminar.");
         }
@@ -209,40 +203,6 @@ public class FrmEspecieVegetal extends JFrame {
             txtNombre.setText(modeloTabla.getValueAt(fila, 2).toString());
             txtDensidad.setText(modeloTabla.getValueAt(fila, 3).toString());
             txtDescripcion.setText(modeloTabla.getValueAt(fila, 4).toString());
-        }
-    }
-
-    // ===== Archivo =====
-    private void guardarEnArchivo() {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(ARCHIVO))) {
-            for (EspecieVegetal e : listaEspecies) {
-                bw.write(e.getId() + "," + e.getCodigo() + "," + e.getNombre() + "," + e.getDensidad() + "," + e.getDescripcion());
-                bw.newLine();
-            }
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(this, "Error al guardar en archivo.");
-        }
-    }
-
-    private void cargarDesdeArchivo() {
-        File archivo = new File(ARCHIVO);
-        if (!archivo.exists()) return;
-
-        try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
-            String linea;
-            while ((linea = br.readLine()) != null) {
-                String[] datos = linea.split(",");
-                int id = Integer.parseInt(datos[0]);
-                String codigo = datos[1];
-                String nombre = datos[2];
-                float densidad = Float.parseFloat(datos[3]);
-                String descripcion = datos[4];
-                EspecieVegetal especie = new EspecieVegetal(id, codigo, nombre, densidad, descripcion);
-                listaEspecies.add(especie);
-                modeloTabla.addRow(new Object[]{id, codigo, nombre, densidad, descripcion});
-            }
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(this, "Error al leer archivo.");
         }
     }
 

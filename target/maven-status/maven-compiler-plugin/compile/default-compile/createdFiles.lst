@@ -5,10 +5,13 @@ com\mycompany\proyectointegrador\util\PruebaConexion.class
 com\mycompany\proyectointegrador\vista\FrmSubmenuInspeccion$1.class
 com\mycompany\proyectointegrador\vista\FrmPropietario$2.class
 com\mycompany\proyectointegrador\modelo\Departamento.class
+com\mycompany\proyectointegrador\modelo\Usuario.class
 com\mycompany\proyectointegrador\vista\FrmPropietario$6.class
 com\mycompany\proyectointegrador\vista\FrmEspecieVegetal.class
 com\mycompany\proyectointegrador\vista\FrmPropietario$5.class
+com\mycompany\proyectointegrador\vista\FrmMenuAsistente$1.class
 com\mycompany\proyectointegrador\dao\EspecieVegetalDAO.class
+com\mycompany\proyectointegrador\vista\FrmMenuPropietario$1.class
 com\mycompany\proyectointegrador\vista\FrmInspeccionFitosanitaria.class
 com\mycompany\proyectointegrador\vista\FrmPredio$1.class
 com\mycompany\proyectointegrador\vista\FrmPropietario$3.class
@@ -28,9 +31,13 @@ com\mycompany\proyectointegrador\modelo\Municipio.class
 com\mycompany\proyectointegrador\vista\FrmPropietario.class
 com\mycompany\proyectointegrador\modelo\EspecieVegetal.class
 com\mycompany\proyectointegrador\modelo\Lote.class
+com\mycompany\proyectointegrador\vista\FrmMenuPropietario.class
+com\mycompany\proyectointegrador\vista\FrmLogin.class
 com\mycompany\proyectointegrador\vista\FrmPaginaPrincipal.class
+com\mycompany\proyectointegrador\vista\FrmMenuAsistente.class
 com\mycompany\proyectointegrador\vista\FrmMunicipio.class
 com\mycompany\proyectointegrador\vista\FrmPredio.class
+com\mycompany\proyectointegrador\dao\UsuarioDAO.class
 com\mycompany\proyectointegrador\modelo\InspeccionFitosanitaria.class
 com\mycompany\proyectointegrador\vista\FrmSubmenuInspeccion.class
 com\mycompany\proyectointegrador\modelo\Predio.class

@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.proyectointegrador.modelo;
 
 /**
@@ -17,17 +13,12 @@ public class Predio {
     private String nombre;
     private float area;
     private Vereda vereda;
-    private String propietarioId; // ✅ AGREGADO: ID del propietario
+    private String propietarioId;
 
     // ========== CONSTRUCTORES ==========
     
     /**
-     * Constructor completo con Vereda (usado internamente en la aplicación)
-     * @param id Identificador único del predio
-     * @param numeroRegistro Número de registro del predio
-     * @param nombre Nombre del predio
-     * @param area Área del predio en hectáreas
-     * @param vereda Vereda donde está ubicado el predio
+     * Constructor completo con Vereda
      */
     public Predio(String id, String numeroRegistro, String nombre, float area, Vereda vereda) {
         this.id = id;
@@ -35,14 +26,11 @@ public class Predio {
         this.nombre = nombre;
         this.area = area;
         this.vereda = vereda;
-        this.propietarioId = null; // Se puede asignar después
+        this.propietarioId = null;
     }
 
     /**
-     * Constructor para uso con DAO (cuando se lee de la base de datos)
-     * @param id Identificador único del predio
-     * @param nombre Nombre del predio
-     * @param propietarioId ID del propietario
+     * Constructor para DAO (lectura de BD)
      */
     public Predio(String id, String nombre, String propietarioId) {
         this.id = id;
@@ -54,10 +42,27 @@ public class Predio {
     }
 
     /**
-     * Constructor vacío (requerido por algunos frameworks)
+     * Constructor simple para uso general
+     */
+    public Predio(String id, String nombre, float area, Vereda vereda) {
+        this.id = id;
+        this.nombre = nombre;
+        this.area = area;
+        this.vereda = vereda;
+        this.numeroRegistro = null;
+        this.propietarioId = null;
+    }
+
+    /**
+     * Constructor vacío
      */
     public Predio() {
-        // Constructor vacío
+        this.id = null;
+        this.numeroRegistro = null;
+        this.nombre = null;
+        this.area = 0.0f;
+        this.vereda = null;
+        this.propietarioId = null;
     }
 
     // ========== GETTERS Y SETTERS ==========
@@ -102,20 +107,19 @@ public class Predio {
         this.vereda = vereda;
     }
 
-    /**
-     * ✅ CORREGIDO: Ahora devuelve el propietarioId correctamente
-     * @return ID del propietario del predio
-     */
     public String getPropietarioId() {
         return propietarioId;
     }
 
-    /**
-     * ✅ AGREGADO: Setter para el propietarioId
-     * @param propietarioId ID del propietario
-     */
     public void setPropietarioId(String propietarioId) {
         this.propietarioId = propietarioId;
+    }
+
+    /**
+     * Obtiene la ubicación como String (nombre de la vereda)
+     */
+    public String getUbicacion() {
+        return vereda != null ? vereda.getNombre() : "Sin vereda";
     }
 
     // ========== MÉTODO TOSTRING ==========
@@ -125,7 +129,6 @@ public class Predio {
         if (vereda != null) {
             return "Predio{" +
                     "id='" + id + '\'' +
-                    ", numeroRegistro='" + numeroRegistro + '\'' +
                     ", nombre='" + nombre + '\'' +
                     ", area=" + area +
                     ", vereda=" + vereda.getNombre() +
@@ -135,6 +138,7 @@ public class Predio {
             return "Predio{" +
                     "id='" + id + '\'' +
                     ", nombre='" + nombre + '\'' +
+                    ", area=" + area +
                     ", propietarioId='" + propietarioId + '\'' +
                     '}';
         }

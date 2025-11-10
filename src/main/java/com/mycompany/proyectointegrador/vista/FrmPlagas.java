@@ -1,16 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
 package com.mycompany.proyectointegrador.vista;
 
 import com.mycompany.proyectointegrador.modelo.Plaga;
+import com.mycompany.proyectointegrador.dao.PlagaDAO;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.io.*;
-import java.util.ArrayList;
-
+import java.sql.SQLException;
+import java.util.List;
 
 public class FrmPlagas extends JFrame {
 
@@ -18,13 +14,12 @@ public class FrmPlagas extends JFrame {
     private JTable tablaPlagas;
     private DefaultTableModel modeloTabla;
     private JButton btnGuardar, btnEditar, btnEliminar, btnLimpiar, btnVolver;
-    private ArrayList<Plaga> listaPlagas;
+    private PlagaDAO plagaDAO = new PlagaDAO();
 
     public FrmPlagas() {
         configurarVentana();
         crearComponentes();
-        listaPlagas = new ArrayList<>();
-        cargarPlagasDesdeArchivo();
+        cargarPlagasDesdeBD();
     }
 
     private void configurarVentana() {
@@ -94,7 +89,9 @@ public class FrmPlagas extends JFrame {
         JPanel panelTabla = new JPanel(new BorderLayout());
         panelTabla.setBorder(BorderFactory.createTitledBorder("Lista de Plagas Registradas"));
 
-        modeloTabla = new DefaultTableModel(new String[]{"Código", "Nombre", "Descripción", "Incidencia", "Alerta"}, 0);
+        modeloTabla = new DefaultTableModel(new String[]{"Código", "Nombre", "Descripción", "Incidencia", "Alerta"}, 0) {
+            public boolean isCellEditable(int row, int col) { return false; }
+        };
         tablaPlagas = new JTable(modeloTabla);
         JScrollPane scrollTabla = new JScrollPane(tablaPlagas);
         panelTabla.add(scrollTabla, BorderLayout.CENTER);
@@ -119,45 +116,50 @@ public class FrmPlagas extends JFrame {
 
         add(panelBotones, BorderLayout.SOUTH);
 
-        // --- Eventos ---
+        // --- Eventos CRUD ---
         btnGuardar.addActionListener(e -> guardarPlaga());
         btnEditar.addActionListener(e -> editarPlaga());
         btnEliminar.addActionListener(e -> eliminarPlaga());
         btnLimpiar.addActionListener(e -> limpiarCampos());
-        btnVolver.addActionListener(e -> {
-            new FrmSubmenuInspeccion().setVisible(true);
-            dispose();
-        });
+        btnVolver.addActionListener(e -> dispose());
 
         // Cargar datos al hacer clic en la tabla
-        tablaPlagas.getSelectionModel().addListSelectionListener(e -> {
-            if (!e.getValueIsAdjusting() && tablaPlagas.getSelectedRow() != -1) {
-                int fila = tablaPlagas.getSelectedRow();
-                txtCodigo.setText(modeloTabla.getValueAt(fila, 0).toString());
-                txtNombre.setText(modeloTabla.getValueAt(fila, 1).toString());
-                txtDescripcion.setText(modeloTabla.getValueAt(fila, 2).toString());
-                txtNivelIncidencia.setText(modeloTabla.getValueAt(fila, 3).toString());
-                txtNivelAlerta.setText(modeloTabla.getValueAt(fila, 4).toString());
+        tablaPlagas.getSelectionModel().addListSelectionListener(e -> cargarSeleccion());
+    }
+
+    private void cargarPlagasDesdeBD() {
+        modeloTabla.setRowCount(0);
+        try {
+            List<Plaga> lista = plagaDAO.listar();
+            for (Plaga p : lista) {
+                modeloTabla.addRow(new Object[]{
+                    p.getCodigo(), p.getNombre(), p.getDescripcion(),
+                    p.getNivelIncidencia(), p.getNivelAlerta()
+                });
             }
-        });
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Error cargando plagas: " + e.getMessage());
+        }
     }
 
     private void guardarPlaga() {
         try {
-            String codigo = txtCodigo.getText();
-            String nombre = txtNombre.getText();
-            String descripcion = txtDescripcion.getText();
-            float nivelIncidencia = Float.parseFloat(txtNivelIncidencia.getText());
-            String nivelAlerta = txtNivelAlerta.getText();
+            String codigo = txtCodigo.getText().trim();
+            String nombre = txtNombre.getText().trim();
+            String descripcion = txtDescripcion.getText().trim();
+            float nivelIncidencia = Float.parseFloat(txtNivelIncidencia.getText().trim());
+            String nivelAlerta = txtNivelAlerta.getText().trim();
+
+            if (codigo.isEmpty() || nombre.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Código y nombre son obligatorios.");
+                return;
+            }
 
             Plaga plaga = new Plaga(codigo, nombre, descripcion, nivelIncidencia, nivelAlerta);
-            listaPlagas.add(plaga);
-            modeloTabla.addRow(new Object[]{codigo, nombre, descripcion, nivelIncidencia, nivelAlerta});
-
-            guardarEnArchivo();
-            JOptionPane.showMessageDialog(this, "✅ Plaga registrada correctamente.");
+            plagaDAO.guardar(plaga);
+            cargarPlagasDesdeBD();
             limpiarCampos();
-
+            JOptionPane.showMessageDialog(this, "✅ Plaga registrada correctamente.");
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "⚠️ Error al registrar la plaga: " + ex.getMessage());
         }
@@ -169,7 +171,6 @@ public class FrmPlagas extends JFrame {
             JOptionPane.showMessageDialog(this, "Seleccione una plaga para editar.");
             return;
         }
-
         try {
             String codigo = txtCodigo.getText();
             String nombre = txtNombre.getText();
@@ -178,15 +179,10 @@ public class FrmPlagas extends JFrame {
             String nivelAlerta = txtNivelAlerta.getText();
 
             Plaga plagaEditada = new Plaga(codigo, nombre, descripcion, nivelIncidencia, nivelAlerta);
-            listaPlagas.set(fila, plagaEditada);
+            plagaDAO.actualizar(plagaEditada);
 
-            modeloTabla.setValueAt(codigo, fila, 0);
-            modeloTabla.setValueAt(nombre, fila, 1);
-            modeloTabla.setValueAt(descripcion, fila, 2);
-            modeloTabla.setValueAt(nivelIncidencia, fila, 3);
-            modeloTabla.setValueAt(nivelAlerta, fila, 4);
-
-            guardarEnArchivo();
+            cargarPlagasDesdeBD();
+            limpiarCampos();
             JOptionPane.showMessageDialog(this, "✏️ Plaga actualizada correctamente.");
 
         } catch (Exception ex) {
@@ -200,14 +196,15 @@ public class FrmPlagas extends JFrame {
             JOptionPane.showMessageDialog(this, "Seleccione una plaga para eliminar.");
             return;
         }
+        try {
+            String codigo = modeloTabla.getValueAt(fila, 0).toString();
+            plagaDAO.eliminar(codigo);
 
-        int confirmar = JOptionPane.showConfirmDialog(this, "¿Desea eliminar esta plaga?", "Confirmar", JOptionPane.YES_NO_OPTION);
-        if (confirmar == JOptionPane.YES_OPTION) {
-            listaPlagas.remove(fila);
-            modeloTabla.removeRow(fila);
-            guardarEnArchivo();
-            JOptionPane.showMessageDialog(this, "🗑️ Plaga eliminada correctamente.");
+            cargarPlagasDesdeBD();
             limpiarCampos();
+            JOptionPane.showMessageDialog(this, "🗑️ Plaga eliminada correctamente.");
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Error al eliminar la plaga: " + ex.getMessage());
         }
     }
 
@@ -220,33 +217,14 @@ public class FrmPlagas extends JFrame {
         tablaPlagas.clearSelection();
     }
 
-    private void guardarEnArchivo() {
-        try (FileWriter writer = new FileWriter("plagas.txt")) {
-            for (Plaga plaga : listaPlagas) {
-                writer.write(plaga.getCodigo() + "," + plaga.getNombre() + "," + plaga.getDescripcion() + "," +
-                        plaga.getNivelIncidencia() + "," + plaga.getNivelAlerta() + "\n");
-            }
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(this, "Error al guardar archivo: " + e.getMessage());
-        }
-    }
-
-    private void cargarPlagasDesdeArchivo() {
-        File archivo = new File("plagas.txt");
-        if (!archivo.exists()) return;
-
-        try (BufferedReader reader = new BufferedReader(new FileReader(archivo))) {
-            String linea;
-            while ((linea = reader.readLine()) != null) {
-                String[] datos = linea.split(",");
-                if (datos.length == 5) {
-                    Plaga plaga = new Plaga(datos[0], datos[1], datos[2], Float.parseFloat(datos[3]), datos[4]);
-                    listaPlagas.add(plaga);
-                    modeloTabla.addRow(new Object[]{datos[0], datos[1], datos[2], datos[3], datos[4]});
-                }
-            }
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(this, "Error al cargar las plagas: " + e.getMessage());
+    private void cargarSeleccion() {
+        int fila = tablaPlagas.getSelectedRow();
+        if (fila != -1) {
+            txtCodigo.setText(modeloTabla.getValueAt(fila, 0).toString());
+            txtNombre.setText(modeloTabla.getValueAt(fila, 1).toString());
+            txtDescripcion.setText(modeloTabla.getValueAt(fila, 2).toString());
+            txtNivelIncidencia.setText(modeloTabla.getValueAt(fila, 3).toString());
+            txtNivelAlerta.setText(modeloTabla.getValueAt(fila, 4).toString());
         }
     }
 
