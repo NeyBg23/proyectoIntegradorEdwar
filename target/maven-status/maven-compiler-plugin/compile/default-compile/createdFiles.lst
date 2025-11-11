@@ -10,13 +10,17 @@ com\mycompany\proyectointegradorfitosanitario\vista\FrmCrearPropietarioConUsuari
 com\mycompany\proyectointegradorfitosanitario\modelo\AsistenteTecnico.class
 com\mycompany\proyectointegradorfitosanitario\config\DatabaseConnection.class
 com\mycompany\proyectointegradorfitosanitario\vista\FrmGestionarPropietarios.class
+com\mycompany\proyectointegradorfitosanitario\vista\FrmRealizarInspeccion.class
+com\mycompany\proyectointegradorfitosanitario\vista\FrmVerPlagasAsistente$1.class
 com\mycompany\proyectointegradorfitosanitario\vista\FrmGestionarPlagas$1.class
 com\mycompany\proyectointegradorfitosanitario\modelo\Usuario$Rol.class
 com\mycompany\proyectointegradorfitosanitario\vista\FrmGestionarAsistentes$1.class
+com\mycompany\proyectointegradorfitosanitario\vista\FrmVerEspeciesAsistente.class
 com\mycompany\proyectointegradorfitosanitario\vista\FrmGestionarDepartamentos.class
 com\mycompany\proyectointegradorfitosanitario\vista\FrmGestionarAsistentes.class
 com\mycompany\proyectointegradorfitosanitario\dao\EspecieDAO.class
 com\mycompany\proyectointegradorfitosanitario\modelo\Departamento.class
+com\mycompany\proyectointegradorfitosanitario\vista\FrmVerPlagasAsistente.class
 com\mycompany\proyectointegradorfitosanitario\dao\DepartamentoDAO.class
 com\mycompany\proyectointegradorfitosanitario\vista\FrmGestionarEspecies.class
 com\mycompany\proyectointegradorfitosanitario\modelo\Usuario.class
@@ -25,7 +29,9 @@ com\mycompany\proyectointegradorfitosanitario\modelo\Plaga.class
 com\mycompany\proyectointegradorfitosanitario\dao\PlagaDAO.class
 com\mycompany\proyectointegradorfitosanitario\vista\FrmGestionarEspecies$1.class
 com\mycompany\proyectointegradorfitosanitario\vista\FrmMenuAdmin.class
+com\mycompany\proyectointegradorfitosanitario\vista\FrmVerEspeciesAsistente$1.class
 com\mycompany\proyectointegradorfitosanitario\dao\AsistenteTecnicoDAO.class
 com\mycompany\proyectointegradorfitosanitario\vista\FrmLogin.class
+com\mycompany\proyectointegradorfitosanitario\vista\FrmMenuAsistente.class
 com\mycompany\proyectointegradorfitosanitario\modelo\Especie.class
 com\mycompany\proyectointegradorfitosanitario\vista\FrmCrearAsistenteConUsuario.class

@@ -239,11 +239,13 @@ public class FrmLogin extends JFrame {
                 
             case "ASISTENTE":
                 System.out.println("   → Color: NARANJA (Asistente)");
-                JOptionPane.showMessageDialog(this, 
-                    "Próximamente: Panel de Asistente Técnico\n(Interfaz NARANJA)",
-                    "Menú Asistente",
-                    JOptionPane.INFORMATION_MESSAGE);
+                this.dispose();
+                SwingUtilities.invokeLater(() -> {
+                    FrmMenuAsistente menuAsistente = new FrmMenuAsistente(usuario);
+                    menuAsistente.setVisible(true);
+                });
                 break;
+
         }
     }
     
