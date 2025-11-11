@@ -1,11 +1,16 @@
 com\mycompany\proyectointegradorfitosanitario\ProyectoIntegradorFitosanitario.class
+com\mycompany\proyectointegradorfitosanitario\modelo\Municipio.class
 com\mycompany\proyectointegradorfitosanitario\modelo\Propietario.class
+com\mycompany\proyectointegradorfitosanitario\dao\PredioDAO.class
 com\mycompany\proyectointegradorfitosanitario\dao\PropietarioDAO.class
 com\mycompany\proyectointegradorfitosanitario\dao\UsuarioDAO.class
+com\mycompany\proyectointegradorfitosanitario\vista\FrmCrearPredio.class
 com\mycompany\proyectointegradorfitosanitario\vista\FrmGestionarPlagas.class
 com\mycompany\proyectointegradorfitosanitario\vista\FrmGestionarPropietarios$1.class
+com\mycompany\proyectointegradorfitosanitario\modelo\Predio.class
 com\mycompany\proyectointegradorfitosanitario\vista\FrmGestionarPropietarios$2.class
 com\mycompany\proyectointegradorfitosanitario\vista\FrmGestionarDepartamentos$1.class
+com\mycompany\proyectointegradorfitosanitario\dao\MunicipioDAO.class
 com\mycompany\proyectointegradorfitosanitario\vista\FrmCrearPropietarioConUsuario.class
 com\mycompany\proyectointegradorfitosanitario\modelo\AsistenteTecnico.class
 com\mycompany\proyectointegradorfitosanitario\config\DatabaseConnection.class
@@ -20,7 +25,10 @@ com\mycompany\proyectointegradorfitosanitario\vista\FrmGestionarDepartamentos.cl
 com\mycompany\proyectointegradorfitosanitario\vista\FrmGestionarAsistentes.class
 com\mycompany\proyectointegradorfitosanitario\dao\EspecieDAO.class
 com\mycompany\proyectointegradorfitosanitario\modelo\Departamento.class
+com\mycompany\proyectointegradorfitosanitario\modelo\Vereda.class
+com\mycompany\proyectointegradorfitosanitario\vista\FrmMenuPropietario.class
 com\mycompany\proyectointegradorfitosanitario\vista\FrmVerPlagasAsistente.class
+com\mycompany\proyectointegradorfitosanitario\dao\VeredaDAO.class
 com\mycompany\proyectointegradorfitosanitario\dao\DepartamentoDAO.class
 com\mycompany\proyectointegradorfitosanitario\vista\FrmGestionarEspecies.class
 com\mycompany\proyectointegradorfitosanitario\modelo\Usuario.class

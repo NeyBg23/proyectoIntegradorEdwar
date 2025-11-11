@@ -20,6 +20,12 @@ public class Departamento {
         this.nombre = nombre;
     }
     
+    @Override
+    public String toString() {
+        return nombre; // Solo mostrar el nombre
+    }
+
+    
     public int getId() { return id; }
     public String getCodigoDane() { return codigoDane; }
     public String getNombre() { return nombre; }

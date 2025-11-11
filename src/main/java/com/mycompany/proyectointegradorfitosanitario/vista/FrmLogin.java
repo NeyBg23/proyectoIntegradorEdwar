@@ -231,11 +231,13 @@ public class FrmLogin extends JFrame {
                 
             case "PROPIETARIO":
                 System.out.println("   → Color: VERDE (Propietario)");
-                JOptionPane.showMessageDialog(this, 
-                    "Próximamente: Panel de Propietario\n(Interfaz VERDE)",
-                    "Menú Propietario",
-                    JOptionPane.INFORMATION_MESSAGE);
+                this.dispose();
+                SwingUtilities.invokeLater(() -> {
+                    FrmMenuPropietario menuPropietario = new FrmMenuPropietario(usuario);
+                    menuPropietario.setVisible(true);
+                });
                 break;
+
                 
             case "ASISTENTE":
                 System.out.println("   → Color: NARANJA (Asistente)");
