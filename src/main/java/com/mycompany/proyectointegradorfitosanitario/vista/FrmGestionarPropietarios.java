@@ -150,48 +150,19 @@ public class FrmGestionarPropietarios extends JFrame {
     }
     
     /**
-     * Agregar un nuevo propietario
+     * Agregar un nuevo propietario (abre la pantalla de crear propietario + usuario)
      */
     private void agregarPropietario() {
-        JTextField txtIdentificacion = new JTextField(10);
-        JTextField txtNombre = new JTextField(10);
-        JTextField txtTelefono = new JTextField(10);
-        JTextField txtCorreo = new JTextField(10);
-        
-        Object[] mensaje = {
-            "Identificación:", txtIdentificacion,
-            "Nombre:", txtNombre,
-            "Teléfono:", txtTelefono,
-            "Correo:", txtCorreo
-        };
-        
-        int resultado = JOptionPane.showConfirmDialog(this, mensaje,
-            "Agregar Propietario", JOptionPane.OK_CANCEL_OPTION);
-        
-        if (resultado == JOptionPane.OK_OPTION) {
-            String identificacion = txtIdentificacion.getText().trim();
-            String nombre = txtNombre.getText().trim();
-            String telefono = txtTelefono.getText().trim();
-            String correo = txtCorreo.getText().trim();
-            
-            if (identificacion.isEmpty() || nombre.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Completa los campos obligatorios",
-                    "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            
-            Propietario nuevoPropietario = new Propietario(identificacion, nombre, telefono, correo);
-            if (dao.insertar(nuevoPropietario)) {
-                JOptionPane.showMessageDialog(this, "✅ Propietario agregado correctamente",
-                    "Éxito", JOptionPane.INFORMATION_MESSAGE);
+        FrmCrearPropietarioConUsuario frameCrear = new FrmCrearPropietarioConUsuario(this);
+        frameCrear.setVisible(true);
+
+        frameCrear.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent e) {
                 cargarDatos();
-            } else {
-                JOptionPane.showMessageDialog(this, "❌ Error al agregar propietario",
-                    "Error", JOptionPane.ERROR_MESSAGE);
             }
-        }
+        });
     }
-    
+
     /**
      * Editar propietario seleccionado
      */

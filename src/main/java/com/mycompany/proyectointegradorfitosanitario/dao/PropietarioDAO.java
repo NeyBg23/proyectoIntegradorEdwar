@@ -25,37 +25,31 @@ public class PropietarioDAO {
      */
     public boolean insertar(Propietario propietario) {
         String sql = """
-            INSERT INTO propietarios (identificacion, nombre, telefono, correo)
-            VALUES (?, ?, ?, ?)
+            INSERT INTO propietarios (id, identificacion, nombre, telefono, correo, usuario_id)
+            VALUES (?, ?, ?, ?, ?, ?)
             """;
-        
+
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
-            
-            stmt.setString(1, propietario.getIdentificacion());
-            stmt.setString(2, propietario.getNombre());
-            stmt.setString(3, propietario.getTelefono());
-            stmt.setString(4, propietario.getCorreo());
-            
+
+            stmt.setObject(1, propietario.getId());
+            stmt.setString(2, propietario.getIdentificacion());
+            stmt.setString(3, propietario.getNombre());
+            stmt.setString(4, propietario.getTelefono());
+            stmt.setString(5, propietario.getCorreo());
+            stmt.setObject(6, propietario.getId()); // usuario_id = id
+
             int filasAfectadas = stmt.executeUpdate();
-            
             if (filasAfectadas > 0) {
                 System.out.println("✅ Propietario insertado: " + propietario.getNombre());
                 return true;
             }
-            
         } catch (SQLException e) {
-            System.err.println("❌ Error al insertar propietario:");
-            System.err.println("   Identificación: " + propietario.getIdentificacion());
-            System.err.println("   Mensaje: " + e.getMessage());
-            
-            if (e.getMessage().contains("duplicate key")) {
-                System.err.println("   💡 Ya existe un propietario con esa identificación");
-            }
+            System.err.println("❌ Error al insertar: " + e.getMessage());
         }
-        
         return false;
     }
+
     
     // ===== OPERACIÓN READ (BUSCAR POR ID) =====
     /**

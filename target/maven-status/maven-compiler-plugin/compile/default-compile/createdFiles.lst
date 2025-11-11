@@ -5,11 +5,15 @@ com\mycompany\proyectointegradorfitosanitario\dao\PropietarioDAO.class
 com\mycompany\proyectointegradorfitosanitario\dao\UsuarioDAO.class
 com\mycompany\proyectointegradorfitosanitario\vista\FrmGestionarPropietarios$1.class
 com\mycompany\proyectointegradorfitosanitario\modelo\Usuario.class
+com\mycompany\proyectointegradorfitosanitario\vista\FrmGestionarAsistentes$2.class
+com\mycompany\proyectointegradorfitosanitario\vista\FrmGestionarPropietarios$2.class
 com\mycompany\proyectointegradorfitosanitario\vista\FrmMenuAdmin.class
+com\mycompany\proyectointegradorfitosanitario\vista\FrmCrearPropietarioConUsuario.class
 com\mycompany\proyectointegradorfitosanitario\dao\AsistenteTecnicoDAO.class
 com\mycompany\proyectointegradorfitosanitario\modelo\AsistenteTecnico.class
 com\mycompany\proyectointegradorfitosanitario\config\DatabaseConnection.class
 com\mycompany\proyectointegradorfitosanitario\vista\FrmGestionarPropietarios.class
 com\mycompany\proyectointegradorfitosanitario\vista\FrmLogin.class
+com\mycompany\proyectointegradorfitosanitario\vista\FrmCrearAsistenteConUsuario.class
 com\mycompany\proyectointegradorfitosanitario\modelo\Usuario$Rol.class
 com\mycompany\proyectointegradorfitosanitario\vista\FrmGestionarAsistentes$1.class
