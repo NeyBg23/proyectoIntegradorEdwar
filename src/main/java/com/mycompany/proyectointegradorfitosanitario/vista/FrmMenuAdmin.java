@@ -161,15 +161,12 @@ public class FrmMenuAdmin extends JFrame {
     
     private void abrirGestionarPropietarios(ActionEvent e) {
         System.out.println("\n📋 Abriendo: Gestionar Propietarios");
-        JOptionPane.showMessageDialog(this,
-            "Próximamente: CRUD de Propietarios\n" +
-            "- Crear propietario\n" +
-            "- Ver lista\n" +
-            "- Actualizar datos\n" +
-            "- Eliminar",
-            "Gestionar Propietarios",
-            JOptionPane.INFORMATION_MESSAGE);
+        SwingUtilities.invokeLater(() -> {
+            FrmGestionarPropietarios frame = new FrmGestionarPropietarios();
+            frame.setVisible(true);
+        });
     }
+
     
     private void abrirGestionarAsistentes(ActionEvent e) {
         System.out.println("\n📋 Abriendo: Gestionar Asistentes Técnicos");
