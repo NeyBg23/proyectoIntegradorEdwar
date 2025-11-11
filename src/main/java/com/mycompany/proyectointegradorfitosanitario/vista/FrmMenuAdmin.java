@@ -169,16 +169,13 @@ public class FrmMenuAdmin extends JFrame {
 
     
     private void abrirGestionarAsistentes(ActionEvent e) {
-        System.out.println("\n📋 Abriendo: Gestionar Asistentes Técnicos");
-        JOptionPane.showMessageDialog(this,
-            "Próximamente: CRUD de Asistentes Técnicos\n" +
-            "- Registrar asistente\n" +
-            "- Ver lista\n" +
-            "- Actualizar datos\n" +
-            "- Eliminar",
-            "Gestionar Asistentes Técnicos",
-            JOptionPane.INFORMATION_MESSAGE);
+        System.out.println("\n📋 Abriendo: Gestionar Asistentes");
+        SwingUtilities.invokeLater(() -> {
+            FrmGestionarAsistentes frame = new FrmGestionarAsistentes();
+            frame.setVisible(true);
+        });
     }
+
     
     private void abrirVerEspecies(ActionEvent e) {
         System.out.println("\n📋 Abriendo: Ver Especies Vegetales");

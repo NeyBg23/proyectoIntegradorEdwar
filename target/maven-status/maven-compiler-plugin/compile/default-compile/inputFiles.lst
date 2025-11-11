@@ -1,9 +1,12 @@
 C:\Users\NeyBg\OneDrive\Documentos\ProyectoIntegradorFitosanitario\ProyectoIntegradorFitosanitario\src\main\java\com\mycompany\proyectointegradorfitosanitario\config\DatabaseConnection.java
+C:\Users\NeyBg\OneDrive\Documentos\ProyectoIntegradorFitosanitario\ProyectoIntegradorFitosanitario\src\main\java\com\mycompany\proyectointegradorfitosanitario\dao\AsistenteTecnicoDAO.java
 C:\Users\NeyBg\OneDrive\Documentos\ProyectoIntegradorFitosanitario\ProyectoIntegradorFitosanitario\src\main\java\com\mycompany\proyectointegradorfitosanitario\dao\PropietarioDAO.java
 C:\Users\NeyBg\OneDrive\Documentos\ProyectoIntegradorFitosanitario\ProyectoIntegradorFitosanitario\src\main\java\com\mycompany\proyectointegradorfitosanitario\dao\UsuarioDAO.java
+C:\Users\NeyBg\OneDrive\Documentos\ProyectoIntegradorFitosanitario\ProyectoIntegradorFitosanitario\src\main\java\com\mycompany\proyectointegradorfitosanitario\modelo\AsistenteTecnico.java
 C:\Users\NeyBg\OneDrive\Documentos\ProyectoIntegradorFitosanitario\ProyectoIntegradorFitosanitario\src\main\java\com\mycompany\proyectointegradorfitosanitario\modelo\Propietario.java
 C:\Users\NeyBg\OneDrive\Documentos\ProyectoIntegradorFitosanitario\ProyectoIntegradorFitosanitario\src\main\java\com\mycompany\proyectointegradorfitosanitario\modelo\Usuario.java
 C:\Users\NeyBg\OneDrive\Documentos\ProyectoIntegradorFitosanitario\ProyectoIntegradorFitosanitario\src\main\java\com\mycompany\proyectointegradorfitosanitario\ProyectoIntegradorFitosanitario.java
+C:\Users\NeyBg\OneDrive\Documentos\ProyectoIntegradorFitosanitario\ProyectoIntegradorFitosanitario\src\main\java\com\mycompany\proyectointegradorfitosanitario\vista\FrmGestionarAsistentes.java
 C:\Users\NeyBg\OneDrive\Documentos\ProyectoIntegradorFitosanitario\ProyectoIntegradorFitosanitario\src\main\java\com\mycompany\proyectointegradorfitosanitario\vista\FrmGestionarPropietarios.java
 C:\Users\NeyBg\OneDrive\Documentos\ProyectoIntegradorFitosanitario\ProyectoIntegradorFitosanitario\src\main\java\com\mycompany\proyectointegradorfitosanitario\vista\FrmLogin.java
 C:\Users\NeyBg\OneDrive\Documentos\ProyectoIntegradorFitosanitario\ProyectoIntegradorFitosanitario\src\main\java\com\mycompany\proyectointegradorfitosanitario\vista\FrmMenuAdmin.java
