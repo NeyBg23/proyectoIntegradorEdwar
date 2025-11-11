@@ -27,6 +27,22 @@ public class VeredaDAO {
         }
         return veredas;
     }
+    
+    public Vereda buscarPorId(int veredaId) {
+        String sql = "SELECT id, nombre, municipio_id FROM veredas WHERE id = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, veredaId);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return new Vereda(rs.getInt("id"), rs.getString("nombre"), rs.getInt("municipio_id"));
+            }
+        } catch (SQLException e) {
+            System.err.println("❌ Error: " + e.getMessage());
+        }
+        return null;
+    }
+
 }
 
 

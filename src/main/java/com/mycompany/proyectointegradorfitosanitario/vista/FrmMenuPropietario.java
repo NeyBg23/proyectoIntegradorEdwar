@@ -145,8 +145,12 @@ public class FrmMenuPropietario extends JFrame {
     
     private void abrirMisPredios(ActionEvent e) {
         System.out.println("\n🏞️ Abriendo: Mis Predios");
-        JOptionPane.showMessageDialog(this, "Funcionalidad: Tabla de mis predios", "Mis Predios", JOptionPane.INFORMATION_MESSAGE);
+        SwingUtilities.invokeLater(() -> {
+            FrmVerMisPredios frame = new FrmVerMisPredios(usuarioLogueado);
+            frame.setVisible(true);
+        });
     }
+
     
     private void abrirCrearPredio(ActionEvent e) {
         System.out.println("\n➕ Abriendo: Crear Predio");

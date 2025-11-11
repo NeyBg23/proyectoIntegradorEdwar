@@ -1,6 +1,7 @@
 com\mycompany\proyectointegradorfitosanitario\ProyectoIntegradorFitosanitario.class
 com\mycompany\proyectointegradorfitosanitario\modelo\Municipio.class
 com\mycompany\proyectointegradorfitosanitario\modelo\Propietario.class
+com\mycompany\proyectointegradorfitosanitario\vista\FrmVerMisPredios.class
 com\mycompany\proyectointegradorfitosanitario\dao\PredioDAO.class
 com\mycompany\proyectointegradorfitosanitario\dao\PropietarioDAO.class
 com\mycompany\proyectointegradorfitosanitario\dao\UsuarioDAO.class
@@ -43,3 +44,4 @@ com\mycompany\proyectointegradorfitosanitario\vista\FrmLogin.class
 com\mycompany\proyectointegradorfitosanitario\vista\FrmMenuAsistente.class
 com\mycompany\proyectointegradorfitosanitario\modelo\Especie.class
 com\mycompany\proyectointegradorfitosanitario\vista\FrmCrearAsistenteConUsuario.class
+com\mycompany\proyectointegradorfitosanitario\vista\FrmVerMisPredios$1.class
