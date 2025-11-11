@@ -178,27 +178,19 @@ public class FrmMenuAdmin extends JFrame {
 
     
     private void abrirVerEspecies(ActionEvent e) {
-        System.out.println("\n📋 Abriendo: Ver Especies Vegetales");
-        JOptionPane.showMessageDialog(this,
-            "Próximamente: Consulta de Especies\n" +
-            "- Banano\n" +
-            "- Tomate\n" +
-            "- Café\n" +
-            "- Papa",
-            "Especies Vegetales",
-            JOptionPane.INFORMATION_MESSAGE);
+        System.out.println("\n🌱 Abriendo: Gestionar Especies");
+        SwingUtilities.invokeLater(() -> {
+            FrmGestionarEspecies frame = new FrmGestionarEspecies();
+            frame.setVisible(true);
+        });
     }
     
     private void abrirVerPlagas(ActionEvent e) {
-        System.out.println("\n📋 Abriendo: Ver Plagas");
-        JOptionPane.showMessageDialog(this,
-            "Próximamente: Consulta de Plagas\n" +
-            "- Picudo negro del banano\n" +
-            "- Polilla del tomate\n" +
-            "- Broca del café\n" +
-            "- Tizón tardío",
-            "Plagas Fitosanitarias",
-            JOptionPane.INFORMATION_MESSAGE);
+        System.out.println("\n🐛 Abriendo: Gestionar Plagas");
+        SwingUtilities.invokeLater(() -> {
+            FrmGestionarPlagas frame = new FrmGestionarPlagas();
+            frame.setVisible(true);
+        });
     }
     
     private void abrirReportes(ActionEvent e) {
@@ -211,6 +203,14 @@ public class FrmMenuAdmin extends JFrame {
             "- Gráficos estadísticos",
             "Reportes del Sistema",
             JOptionPane.INFORMATION_MESSAGE);
+    }
+    
+    private void abrirGestionarDepartamentos(ActionEvent e) {
+        System.out.println("\n📍 Abriendo: Gestionar Departamentos");
+        SwingUtilities.invokeLater(() -> {
+            FrmGestionarDepartamentos frame = new FrmGestionarDepartamentos();
+            frame.setVisible(true);
+        });
     }
     
     private void cerrarSesion(ActionEvent e) {
