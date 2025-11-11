@@ -27,6 +27,8 @@ public class FrmMenuPropietario extends JFrame {
     private JButton btnSolicitarInspeccion;
     private JButton btnVerMisInformes;
     private JButton btnCerrarSesion;
+    private JButton btnCrearLugar;
+
     
     private Usuario usuarioLogueado;
     
@@ -113,9 +115,19 @@ public class FrmMenuPropietario extends JFrame {
         btnVerMisInformes.addActionListener(this::abrirVerInformes);
         panelPrincipal.add(btnVerMisInformes);
         
+        // NUEVO: 7. Crear Lugar de Producción
+        btnCrearLugar = crearBoton(
+            "🏭 Crear Lugar de Producción",
+            50, 430, 300, 80,
+            new Color(153, 102, 51),
+            "Agrupar predios para inspección"
+        );
+        btnCrearLugar.addActionListener(this::abrirCrearLugarProduccion);
+        panelPrincipal.add(btnCrearLugar);
+
         btnCerrarSesion = crearBoton(
             "🚪 Cerrar Sesión",
-            350, 330, 300, 80,
+            350, 430, 300, 80,
             new Color(211, 47, 47),
             "Salir del sistema"
         );
@@ -159,6 +171,15 @@ public class FrmMenuPropietario extends JFrame {
             frame.setVisible(true);
         });
     }
+    
+    private void abrirCrearLugarProduccion(ActionEvent e) {
+        System.out.println("\n🏭 Abriendo: Crear Lugar de Producción");
+        SwingUtilities.invokeLater(() -> {
+            FrmCrearLugarProduccion frame = new FrmCrearLugarProduccion(usuarioLogueado);
+            frame.setVisible(true);
+        });
+    }
+
     
     private void abrirSolicitarInspeccion(ActionEvent e) {
         System.out.println("\n📋 Abriendo: Solicitar Inspección");

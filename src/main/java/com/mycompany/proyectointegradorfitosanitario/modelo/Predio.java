@@ -43,5 +43,11 @@ public class Predio {
     public UUID getPropietarioId() { return propietarioId; }
     public Integer getVeredaId() { return veredaId; }
     public LocalDateTime getFechaRegistro() { return fechaRegistro; }
+    
+    @Override
+    public String toString() {
+        return getNombre() + " (ICA: " + getNumeroRegistro() + ")";
+    }
+
 }
 

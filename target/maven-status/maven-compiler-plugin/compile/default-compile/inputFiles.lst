@@ -2,6 +2,7 @@ C:\Users\NeyBg\OneDrive\Documentos\ProyectoIntegradorFitosanitario\ProyectoInteg
 C:\Users\NeyBg\OneDrive\Documentos\ProyectoIntegradorFitosanitario\ProyectoIntegradorFitosanitario\src\main\java\com\mycompany\proyectointegradorfitosanitario\dao\AsistenteTecnicoDAO.java
 C:\Users\NeyBg\OneDrive\Documentos\ProyectoIntegradorFitosanitario\ProyectoIntegradorFitosanitario\src\main\java\com\mycompany\proyectointegradorfitosanitario\dao\DepartamentoDAO.java
 C:\Users\NeyBg\OneDrive\Documentos\ProyectoIntegradorFitosanitario\ProyectoIntegradorFitosanitario\src\main\java\com\mycompany\proyectointegradorfitosanitario\dao\EspecieDAO.java
+C:\Users\NeyBg\OneDrive\Documentos\ProyectoIntegradorFitosanitario\ProyectoIntegradorFitosanitario\src\main\java\com\mycompany\proyectointegradorfitosanitario\dao\LugarProduccionDAO.java
 C:\Users\NeyBg\OneDrive\Documentos\ProyectoIntegradorFitosanitario\ProyectoIntegradorFitosanitario\src\main\java\com\mycompany\proyectointegradorfitosanitario\dao\MunicipioDAO.java
 C:\Users\NeyBg\OneDrive\Documentos\ProyectoIntegradorFitosanitario\ProyectoIntegradorFitosanitario\src\main\java\com\mycompany\proyectointegradorfitosanitario\dao\PlagaDAO.java
 C:\Users\NeyBg\OneDrive\Documentos\ProyectoIntegradorFitosanitario\ProyectoIntegradorFitosanitario\src\main\java\com\mycompany\proyectointegradorfitosanitario\dao\PredioDAO.java
@@ -11,6 +12,7 @@ C:\Users\NeyBg\OneDrive\Documentos\ProyectoIntegradorFitosanitario\ProyectoInteg
 C:\Users\NeyBg\OneDrive\Documentos\ProyectoIntegradorFitosanitario\ProyectoIntegradorFitosanitario\src\main\java\com\mycompany\proyectointegradorfitosanitario\modelo\AsistenteTecnico.java
 C:\Users\NeyBg\OneDrive\Documentos\ProyectoIntegradorFitosanitario\ProyectoIntegradorFitosanitario\src\main\java\com\mycompany\proyectointegradorfitosanitario\modelo\Departamento.java
 C:\Users\NeyBg\OneDrive\Documentos\ProyectoIntegradorFitosanitario\ProyectoIntegradorFitosanitario\src\main\java\com\mycompany\proyectointegradorfitosanitario\modelo\Especie.java
+C:\Users\NeyBg\OneDrive\Documentos\ProyectoIntegradorFitosanitario\ProyectoIntegradorFitosanitario\src\main\java\com\mycompany\proyectointegradorfitosanitario\modelo\LugarProduccion.java
 C:\Users\NeyBg\OneDrive\Documentos\ProyectoIntegradorFitosanitario\ProyectoIntegradorFitosanitario\src\main\java\com\mycompany\proyectointegradorfitosanitario\modelo\Municipio.java
 C:\Users\NeyBg\OneDrive\Documentos\ProyectoIntegradorFitosanitario\ProyectoIntegradorFitosanitario\src\main\java\com\mycompany\proyectointegradorfitosanitario\modelo\Plaga.java
 C:\Users\NeyBg\OneDrive\Documentos\ProyectoIntegradorFitosanitario\ProyectoIntegradorFitosanitario\src\main\java\com\mycompany\proyectointegradorfitosanitario\modelo\Predio.java
@@ -19,6 +21,7 @@ C:\Users\NeyBg\OneDrive\Documentos\ProyectoIntegradorFitosanitario\ProyectoInteg
 C:\Users\NeyBg\OneDrive\Documentos\ProyectoIntegradorFitosanitario\ProyectoIntegradorFitosanitario\src\main\java\com\mycompany\proyectointegradorfitosanitario\modelo\Vereda.java
 C:\Users\NeyBg\OneDrive\Documentos\ProyectoIntegradorFitosanitario\ProyectoIntegradorFitosanitario\src\main\java\com\mycompany\proyectointegradorfitosanitario\ProyectoIntegradorFitosanitario.java
 C:\Users\NeyBg\OneDrive\Documentos\ProyectoIntegradorFitosanitario\ProyectoIntegradorFitosanitario\src\main\java\com\mycompany\proyectointegradorfitosanitario\vista\FrmCrearAsistenteConUsuario.java
+C:\Users\NeyBg\OneDrive\Documentos\ProyectoIntegradorFitosanitario\ProyectoIntegradorFitosanitario\src\main\java\com\mycompany\proyectointegradorfitosanitario\vista\FrmCrearLugarProduccion.java
 C:\Users\NeyBg\OneDrive\Documentos\ProyectoIntegradorFitosanitario\ProyectoIntegradorFitosanitario\src\main\java\com\mycompany\proyectointegradorfitosanitario\vista\FrmCrearPredio.java
 C:\Users\NeyBg\OneDrive\Documentos\ProyectoIntegradorFitosanitario\ProyectoIntegradorFitosanitario\src\main\java\com\mycompany\proyectointegradorfitosanitario\vista\FrmCrearPropietarioConUsuario.java
 C:\Users\NeyBg\OneDrive\Documentos\ProyectoIntegradorFitosanitario\ProyectoIntegradorFitosanitario\src\main\java\com\mycompany\proyectointegradorfitosanitario\vista\FrmGestionarAsistentes.java
